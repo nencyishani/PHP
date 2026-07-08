@@ -3,9 +3,9 @@
 <head>
     <title>PHP String Functions</title>
 </head>
-<body bgcolor="lightgreen">
+<body bgcolor="lightblue">
 
-<h2><font color="red"> String Functions </font></h2>
+<h2><font color="red"> String Functions </font></h3>
 
 <form method="post">
     Enter String : <input type="text" name="str" required><br><br>
