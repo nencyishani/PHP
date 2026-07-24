@@ -1,3 +1,17 @@
 <?php
-echo "<h2>Welcome to PHP Programming</h2>";
+
+$name = $_POST['name'];
+$father = $_POST['father'];
+$course = $_POST['course'];
+$mobile = $_POST['mobile'];
+
+
+setcookie("student_name", $name, time() + (30*24*60*60), "/");
+setcookie("father_name", $father, time() + (30*24*60*60), "/");
+setcookie("course", $course, time() + (30*24*60*60), "/");
+setcookie("mobile", $mobile, time() + (30*24*60*60), "/");
+
+header("Location: home.php");
+exit();
+
 ?>
