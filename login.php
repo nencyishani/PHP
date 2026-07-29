@@ -1,70 +1,40 @@
 <?php
-include("db.php");
-
-$message = "";
-
 if(isset($_POST['login']))
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    // Store cookies for 1 month
+    setcookie("username", $username, time() + (30 * 24 * 60 * 60));
+    setcookie("password", $password, time() + (30 * 24 * 60 * 60));
 
-    if(mysqli_num_rows($result) > 0)
-    {
-        $message = "Login Successful";
-    }
-    else
-    {
-        $message = "Invalid Username or Password";
-    }
+    echo "Login Successful.<br>";
+    echo "<a href='read_cookie.php'>Go to Next Page</a>";
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Login Form</title>
 </head>
 <body>
 
-<center>
-
 <h2>Login Form</h2>
 
-<?php
-if($message != "")
-{
-    echo "<h3>$message</h3>";
-}
-?>
-
 <form method="post">
+    Username:
+    <input type="text" name="username"
+    value="<?php if(isset($_COOKIE['username'])) echo $_COOKIE['username']; ?>">
+    <br><br>
 
-    <table border="1" cellpadding="10">
+    Password:
+    <input type="password" name="password"
+    value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password']; ?>">
+    <br><br>
 
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="username" required></td>
-        </tr>
-
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password" required></td>
-        </tr>
-
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" name="login" value="Login">
-            </td>
-        </tr>
-
-    </table>
-
+    <input type="submit" name="login" value="Login">
 </form>
-
-</center>
 
 </body>
 </html>
