@@ -1,18 +1,8 @@
 <?php
+$conn = mysqli_connect("localhost","root","","studentdb");
 
-    $dbhost = "localhost";
-    $dbname = "college";
-    $dbuser = "root";
-    $dbpass = "";
-
-    $conn = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-
-    if(!$conn)
-    {
-        die("Connection Failed : " . mysqli_connect_error());
-    }
-    else{
-        
-    }
-
+if(!$conn)
+{
+    die("Connection Failed");
+}
 ?>
