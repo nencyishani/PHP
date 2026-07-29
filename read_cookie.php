@@ -1,17 +1,13 @@
 <?php
+echo "<h2>Stored Cookie Values</h2>";
 
-if(isset($_COOKIE['student_name']))
+if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
 {
-    echo "<h2>Student Admission Details</h2>";
-
-    echo "Student Name : " . $_COOKIE['student_name'] . "<br>";
-    echo "Father Name : " . $_COOKIE['father_name'] . "<br>";
-    echo "Course : " . $_COOKIE['course'] . "<br>";
-    echo "Mobile No. : " . $_COOKIE['mobile'] . "<br>";
+    echo "Username : " . $_COOKIE['username'] . "<br>";
+    echo "Password : " . $_COOKIE['password'];
 }
 else
 {
-    echo "No Cookie Found.";
+    echo "Cookies are not available.";
 }
-
 ?>
