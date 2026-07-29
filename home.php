@@ -1,25 +1,23 @@
 <?php
+session_start();
 
-if(isset($_COOKIE['student_name']))
+if(!isset($_SESSION['username']))
 {
-    echo "<center>";
-    echo "<h2>Student Admission Details</h2>";
-
-    echo "<table border='1' cellpadding='10'>";
-
-    echo "<tr><td>Student Name</td><td>".$_COOKIE['student_name']."</td></tr>";
-    echo "<tr><td>Father Name</td><td>".$_COOKIE['father_name']."</td></tr>";
-    echo "<tr><td>Course</td><td>".$_COOKIE['course']."</td></tr>";
-    echo "<tr><td>Mobile No.</td><td>".$_COOKIE['mobile']."</td></tr>";
-
-    echo "</table>";
-
-    echo "<br><a href='header.php'>Back</a>";
-    echo "</center>";
+    header("Location: login.php");
+    exit();
 }
-else
-{
-    echo "Cookie Not Found";
-}
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+
+<h2>Welcome <?php echo $_SESSION['username']; ?></h2>
+
+<a href="logout.php">Logout</a>
+
+</body>
+</html>
