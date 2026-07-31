@@ -1,45 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Image Upload</title>
+    <title> PHP Image  </title>
 </head>
+
 <body>
 
-<form action="" method="post" enctype="multipart/form-data">
-
-    Upload Image:
-    <input type="file" name="image"><br><br>
-
-    <input type="submit" value="Upload Image">
-
-</form>
+<h2>PHP Image Display</h2>
 
 <?php
 
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
-    if(isset($_FILES["image"]) && $_FILES["image"]["error"]==0)
-    {
-        $image=$_FILES["image"];
+$images = array("image1.jpg","image2.jpg","image3.jpg","image4.jpg");
 
-        echo "<b>Image Name :</b> ".$image["name"]."<br>";
-        echo "<b>Image Type :</b> ".$image["type"]."<br>";
-        echo "<b>Image Size :</b> ".$image["size"]." bytes<br>";
+$randomImage = $images[array_rand($images)];
 
-        if(move_uploaded_file($image["tmp_name"],"uploads/".$image["name"]))
-        {
-            echo "<br><b>Image Uploaded Successfully!</b>";
-        }
-        else
-        {
-            echo "<br><b>Image Upload Failed!</b>";
-        }
-    }
-    else
-    {
-        echo "Please Select an Image.";
-    }
-}
+echo "<img src='$randomImage' width='500' height='300'>";
 
 ?>
 
