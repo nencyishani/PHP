@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Load AJAX Text File</title>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>XMLHttpRequest with PHP</title>
 
     <script>
-        $(document).ready(function () 
-        {
-            $("#btn").click(function () 
-            {
-                $("#result").load("viewdata.txt");
-            });
-        });
+        function loadData() 
+		{
+            var xhr = new XMLHttpRequest();
 
+            xhr.onreadystatechange = function () 
+			{
+                if (xhr.readyState == 4 && xhr.status == 200) 
+				{
+                    document.getElementById("result").innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.open("GET", "getdata.php", true);
+            xhr.send();
+        }
     </script>
 </head>
-
 <body>
 
-    <h2> Load Text File using AJAX </h2>
+    <h2>Retrieve Data from TXT File using XMLHttpRequest</h2>
 
-    <button id="btn"> Load Text File </button>
+    <input type="button" value="Load Data" onclick="loadData()">
 
-    <div id="result"></div>
+    <hr>
+
+    <div id="result" style="border:1px solid black; padding:10px; width:300px;">
+        Click the button to load data.
+    </div>
 
 </body>
 </html>
