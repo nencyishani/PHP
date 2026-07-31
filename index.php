@@ -1,52 +1,29 @@
-<?php
-$conn = mysqli_connect("localhost", "root", "", "mydb");
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$result = mysqli_query($conn, "SELECT * FROM users");
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Details</title>
+    <title>Load AJAX Text File</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () 
+        {
+            $("#btn").click(function () 
+            {
+                $("#result").load("viewdata.txt");
+            });
+        });
+
+    </script>
 </head>
+
 <body>
 
-<table border="1" cellpadding="10" cellspacing="0" width="90%">
-    <tr>
-        <th>User name</th>
-        <th>Password</th>
-        <th>Date</th>
-        <th colspan="2">Action</th>
-    </tr>
+    <h2> Load Text File using AJAX </h2>
 
-<?php
-while ($row = mysqli_fetch_assoc($result)) {
-?>
-    <tr>
-        <td><?php echo $row['username']; ?></td>
-        <td><?php echo $row['password']; ?></td>
-        <td><?php echo $row['date']; ?></td>
+    <button id="btn"> Load Text File </button>
 
-        <td>
-            <a href="edit.php?id=<?php echo $row['id']; ?>">edit</a>
-        </td>
-
-        <td>
-            <a href="delete.php?id=<?php echo $row['id']; ?>"
-               onclick="return confirm('Are you sure you want to delete?');">
-               delete
-            </a>
-        </td>
-    </tr>
-<?php
-}
-?>
-
-</table>
+    <div id="result"></div>
 
 </body>
 </html>
